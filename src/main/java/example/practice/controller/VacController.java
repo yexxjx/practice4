@@ -1,4 +1,4 @@
 package example.practice.controller;
 
-public class BoardController {
+public class VacController {
 }
