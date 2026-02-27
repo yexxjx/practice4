@@ -1,10 +1,12 @@
 package example.practice.model.dao;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
-
+@Component
 public class VacDao {
-    public VacDao(){}
+    public VacDao(){connect();}
     private String url="jdbc:mysql://localhost:3306/practice4";
     private String user="root"; private String password="1234";
     private Connection conn;
