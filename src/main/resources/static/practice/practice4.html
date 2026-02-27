@@ -1,142 +1,225 @@
-<!DOCTYPE html>
-<html>
-
+<!doctype html>
+<html lang="ko">
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <link rel='stylesheet' type='text/css' media='screen' href='practice4.css'>
-    <script src='main.js'></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>인사 관리 대시보드</title>
+  <link rel="stylesheet" href="practice4.css" />
 </head>
-
 <body>
-<div id="wrap">
-    <div id="title">
-        <div> 인사 관리 대시보드 </div>
-        부서, 사원, 휴가 통합 관리 시스템
-    </div>
-    <div id="body">
-        <div id="dept-mgt"><!--부서 관리-->
-            <div id="menu-title">부서 관리</div>
-            <div id="deptAddArea">
-                <input id="new-dept" type="text" placeholder="신규 부서명 입력" />
-                <button class="deptAddBtn" onclick="deptAdd()">추가</button>
-            </div>
-            <div id="dept-list">
-                <table><!--부서관리 테이블-->
-                    <thead>
-                    <tr>
-                        <th>부서명</th>
-                        <th>관리</th>
-                    </tr>
-                    </thead>
-                    <tbody id="dept-body">
-                    </tbody>
-                </table>
-            </div>
-        </div> <!--부서 관리 end-->
+  <div class="page">
+    <!-- 상단 타이틀 -->
+    <header class="page-header">
+      <h1>인사 관리 대시보드</h1>
+      <p class="subtitle">부서, 사원, 휴가 통합 관리 시스템</p>
+    </header>
 
-        <div id="emp-reg"><!--사원 등록-->
-            <div id="menu-title">사원 등록</div>
-            <div id="emp-reg-top">
-                <div class="group">
-                    이름
-                    <input id="name" type="text" />
-                </div>
-                <div class="group">
-                    직급
-                    <input id="position" type="text" />
-                </div>
-                <div class="group">
-                    부서
-                    <select id="dept-drop">
-                        <option value="disabled"> 부서를 선택하세요 </option>
-                    </select>
-                </div>
-                <div class="group">
-                    사진
-                    <input id="image" type="file" />
-                </div>
-            </div>
-            <div id="empAddArea">
-                <button class="empAddBtn" onclick="empAdd()">등록</button>
-            </div>
-            <div id="emp-list">
-                <div id="menu-title">사원 전체 목록</div>
-                <table><!--사원 관리 테이블-->
-                    <thead>
-                    <tr>
-                        <th>사진</th>
-                        <th>이름</th>
-                        <th>부서</th>
-                        <th>직급</th>
-                        <th>관리</th>
-                    </tr>
-                    </thead>
-                    <tbody id="empbody">
-                    <tr>
-                        <td><img id="empimg" src="https://placehold.co/100x100" /></td>
-                        <td>김민준</td>
-                        <td>개발팀</td>
-                        <td>신입 개발자</td>
-                        <td>
-                            <button class="updateBtn" onclick="updateEmp()">수정</button>
-                            <button class="deleteBtn" onclick="deleteEmp()">삭제</button>
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div><!--사원 등록 end-->
+    <!-- 3열 레이아웃 -->
+    <main class="grid">
+      <!-- 좌측: 부서관리 -->
+      <section class="card">
+        <div class="card-title">
+          <h2>부서 관리</h2>
+        </div>
 
-        <div id="emp-vac"><!--사원 휴가-->
-            <div id="menu-title">사원 휴가 신청</div>
-            <div id="emp-vac-top">
-                <div>
-                    <div class="group1">
-                        신청 사원
-                        <select id="name-drop">
-                            <option value="disabled"> 휴가 신청 사원을 선택하세요 </option>
-                        </select>
-                    </div>
-                    <div id="vacdate">
-                        <div class="group2">
-                            휴가 시작일 <input id="vacStart" type="date" />
-                        </div>
-                        <div class="group2">
-                            휴가 종료일 <input id="vacEnd" type="date" />
-                        </div>
-                    </div>
-                    <div class="group1">
-                        휴가 사유 <input id="vacReason" type="text" placeholder="예: 여름 휴가" />
-                    </div>
-                </div>
-            </div>
-            <div id="vacAddArea">
-                <button id="vacSignUpBtn" onclick="vacSignUp()">신청</button>
-            </div>
-            <div>
-                <div id="menu-title">휴가 신청 전체 목록</div>
-                <div id="vacbody">
-                    <div id="vacbox">
-                        <div> 김민준 </div>
-                        <div id="vaclistdate">
-                            <div> 2025-08-04 </div>
-                            ~
-                            <div> 2025-08-04 </div>
-                        </div>
-                        <div id="reasontext"> 사유: 병원 진료 </div>
-                        <button id="vacCancleBtn" onclick="vacCancle()">신청취소</button>
-                    </div>
-                </div>
-            </div>
-        </div><!--사원 휴가end-->
-    </div> <!--body end-->
-</div> <!-- wrap end-->
+        <div class="dept-add">
+          <input class="input" type="text" placeholder="신규 부서명 입력" />
+          <a class="link link-black" href="#" onclick="deptCreate()">추가</a>
+        </div>
 
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script src="practice9.js"></script>
+        <div class="mini-table">
+          <div class="mini-table-head">
+            <span>부서명</span>
+            <span class="right">관리</span>
+          </div>
+
+          <div class="mini-table-row">
+            <span>개발팀</span>
+            <span class="right">
+              <a class="link link-blue" href="#" onclick="deptUpdate()">수정</a>
+              <a class="link link-red" href="#" onclick="deptDelete()">삭제</a>
+            </span>
+          </div>
+          <div class="mini-table-row">
+            <span>디자인팀</span>
+            <span class="right">
+              <a class="link link-blue" href="#" onclick="deptUpdate()">수정</a>
+              <a class="link link-red" href="#" onclick="deptDelete()">삭제</a>
+            </span>
+          </div>
+          <div class="mini-table-row">
+            <span>기획팀</span>
+            <span class="right">
+              <a class="link link-blue" href="#" onclick="deptUpdate()">수정</a>
+              <a class="link link-red" href="#" onclick="deptDelete()">삭제</a>
+            </span>
+          </div>
+        </div>
+      </section>
+
+      <!-- 중앙: 사원 등록 + 사원 목록 -->
+      <section class="card">
+        <div class="card-title">
+          <h2>사원 등록</h2>
+        </div>
+
+        <form class="form">
+          <div class="form-row">
+            <div class="form-group">
+              <span class="label">이름</span>
+              <input class="input" type="text" placeholder="예: 김민준" />
+            </div>
+            <div class="form-group">
+              <span class="label">직급</span>
+              <input class="input" type="text" placeholder="예: 선임 개발자" />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <span class="label">부서</span>
+              <select class="select">
+                <option>부서를 선택하세요</option>
+                <option>개발팀</option>
+                <option>디자인팀</option>
+                <option>기획팀</option>
+              </select>
+            </div>
+
+          </div>
+          <div class="form-row">
+            <button class="btn btn-primary" type="button">등록</button>
+          </div>
+
+        </form>
+
+        <div class="divider"></div>
+
+        <div class="card-title small">
+          <h3>사원 전체 목록</h3>
+        </div>
+
+        <div class="table-wrap">
+          <table class="table">
+            <thead>
+              <tr>
+                <th>이름</th>
+                <th>부서</th>
+                <th>직급</th>
+                <th style="width:110px;">관리</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="name">김민준</td>
+                <td>개발팀</td>
+                <td>선임 개발자</td>
+                <td class="">
+                  <a class="link link-blue" href="#">수정</a>
+                  <a class="link link-red" href="#">삭제</a>
+                </td>
+              </tr>
+                <tr>
+                  <td class="name">이서연</td>
+                  <td>기획팀</td>
+                  <td>프로젝트 매니저</td>
+                  <td>
+                    <a class="link link-blue" href="#">수정</a>
+                    <a class="link link-red" href="#">삭제</a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="name">박지훈</td>
+                  <td>디자인팀</td>
+                  <td>UI/UX 디자이너</td>
+                  <td>
+                    <a class="link link-blue" href="#">수정</a>
+                    <a class="link link-red" href="#">삭제</a>
+                  </td>
+                </tr>
+
+                <tr>
+                  <td class="name">최은지</td>
+                  <td>디자인팀</td>
+                  <td>UI/UX 디자이너</td>
+                  <td>
+                    <a class="link link-blue" href="#">수정</a>
+                    <a class="link link-red" href="#">삭제</a>
+                  </td>
+                </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- 우측: 휴가 신청 -->
+      <section class="card">
+        <div class="card-title">
+          <h2>사원 휴가 신청</h2>
+        </div>
+
+        <form class="form">
+          <div class="form-group">
+            <label class="label">신청자 선택</label>
+            <select class="select">
+              <option>휴가 신청 사원을 선택하세요</option>
+              <option>김민준</option>
+              <option>이서연</option>
+              <option>박지윤</option>
+              <option>최은지</option>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="label">휴가 시작일</label>
+              <input class="input" type="date" />
+            </div>
+            <div class="form-group">
+              <label class="label">휴가 종료일</label>
+              <input class="input" type="date" />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="label">휴가 사유</label>
+            <input class="input" type="text" placeholder="예: 여름 휴가" />
+          </div>
+
+          <div class="form-actions">
+            <button class="btn btn-success" type="button">신청</button>
+          </div>
+        </form>
+
+        <div class="divider"></div>
+
+        <div class="card-title small">
+          <h3>휴가 신청 전체 목록</h3>
+        </div>
+
+        <div class="vacation-list">
+          <article class="vac-item">
+            <div class="vac-main">
+              <div class="vac-name">김민준</div>
+              <div class="vac-date">2025-08-04 ~ 2025-08-04</div>
+              <div class="vac-reason">사유: 병원 방문</div>
+            </div>
+            <button class="btn btn-ghost">신청취소</button>
+          </article>
+
+          <article class="vac-item">
+            <div class="vac-main">
+              <div class="vac-name">이서연</div>
+              <div class="vac-date">2025-07-21 ~ 2025-07-25</div>
+              <div class="vac-reason">사유: 여름 휴가</div>
+            </div>
+            <button class="btn btn-ghost">신청취소</button>
+          </article>
+        </div>
+      </section>
+    </main>
+  </div>
 </body>
-
 </html>
