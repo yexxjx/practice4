@@ -1,0 +1,228 @@
+*{
+    padding: 0px; margin: 0px;
+}
+
+#wrap{
+    width: 1700px;
+    background-color: #f1f5f9;
+    font-size: 16px;
+}
+#title{
+    text-align: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    color: gray;
+}
+#title > div{
+    font-size: 35px;
+    font-weight: bold;
+    color: black;
+} /*맨 위 인사 관리 대시보드*/
+button{
+    border: none;
+    background-color: white;
+    padding: 4px;
+}
+input{
+    border-radius: 10px;
+    margin: 5px;
+    height: 40px;
+    text-align: left;
+}
+.updateBtn{
+    color: blue;
+}
+.deleteBtn{
+    color: red;
+}
+#body{
+    display: flex;
+    justify-content: space-around;
+    margin-left: 100px;
+    margin-right: 100px;
+}
+#body > div{
+    border: none;
+    border-radius: 15px;
+    background-color: white;
+    height: 1000px;
+} /*각 관리 화면 설정*/
+#menu-title{
+    font-size: 30px;
+    font-weight: bold;
+    border-bottom: 1px solid gray;
+    padding: 10px;
+} /*각 메뉴의 제목*/
+
+/*========1.부서관리 화면========*/
+#dept-mgt{
+    padding: 20px;
+}
+#new-dept{
+    padding: 10px;
+    border-radius: 10px;
+}
+#deptAddArea{
+    width: 250px; height: 40px;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#deptAddArea > button{
+    border-radius: 10px;
+    width: 50px;
+    margin-left: 10px;
+    background-color: #9333ea;
+    color: white;
+}
+#dept-list{
+    width: 250px;
+    margin: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+#dept-list > table{
+    font-size: 14px;
+    width: 100%;
+    border-collapse: collapse;
+}
+#dept-list > table th:first-child{
+    text-align: left;
+    align-items: center;
+    background-color: #f1f5f9;
+    font-weight:normal;
+    padding: 10px;
+}
+#dept-list > table th:last-child{
+    text-align: right;
+    align-items: center;
+    background-color: #f1f5f9;
+    font-weight:normal;
+    padding-right: 30px;
+}
+#dept-list > table td:first-child{
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid gray;
+}
+#dept-list > table td:last-child{
+    padding-right: 13px;
+    text-align: right;
+    border-bottom: 1px solid gray;
+}
+
+/*========2.사원등록 화면========*/
+#emp-reg{
+    padding: 20px;
+}
+#name, #position, #dept-drop, #image{
+    border-radius: 7px;
+    height: 40px;
+}
+#emp-reg-top{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+#emp-reg-top .group{
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    margin-bottom: 20px;
+}
+#img{
+    font-size: 18px;
+    width: 100%;
+}
+#empAddArea{
+    display: flex;
+    justify-content: flex-end;
+}
+#empAddArea > button{
+    width: 70px;
+    height: 40px;
+    border-radius: 10px;
+    background-color: #4f46e5;
+    color: white;
+}
+
+#emp-list > table{
+    font-size: 14px;
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+#emp-list >table th{
+    padding: 10px;
+    background-color: #f1f5f9;
+}
+#emp-list >table td{
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid gray;
+}
+
+#empimg{
+    border-radius: 10px;
+}
+
+/*========3.휴가신청 화면========*/
+#emp-vac{
+    padding: 20px;
+}
+#emp-vac-top{
+    padding-top: 15px;
+}
+#vacdate{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#emp-vac-top .group1{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-bottom: 20px;
+}
+#emp-vac-top .group2{
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+    margin-bottom: 20px;
+}
+#vacAddArea{
+    display: flex;
+    justify-content: flex-end;
+}
+#vacAddArea > button{
+    width: 60px; height: 40px;
+    background-color: #0d9488;
+    color: white;
+    border-radius: 10px;
+}
+#vacbox{
+    background-color: #f1f5f9;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 10px;
+    position: relative;
+    margin-top: 10px;
+}
+#vacbox > button{
+    position: absolute;
+    top: 10px; right: 10px;
+    background-color: #94a3b8;
+    color: white;
+    border-radius: 10px;
+}
+#vaclistdate{
+    display: flex;
+
+}
+#reasontext{
+    color: gray;
+}

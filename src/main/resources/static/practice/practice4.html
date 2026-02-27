@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Page Title</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='practice4.css'>
+    <script src='main.js'></script>
+</head>
+
+<body>
+<div id="wrap">
+    <div id="title">
+        <div> 인사 관리 대시보드 </div>
+        부서, 사원, 휴가 통합 관리 시스템
+    </div>
+    <div id="body">
+        <div id="dept-mgt"><!--부서 관리-->
+            <div id="menu-title">부서 관리</div>
+            <div id="deptAddArea">
+                <input id="new-dept" type="text" placeholder="신규 부서명 입력" />
+                <button class="deptAddBtn" onclick="deptAdd()">추가</button>
+            </div>
+            <div id="dept-list">
+                <table><!--부서관리 테이블-->
+                    <thead>
+                    <tr>
+                        <th>부서명</th>
+                        <th>관리</th>
+                    </tr>
+                    </thead>
+                    <tbody id="dept-body">
+                    </tbody>
+                </table>
+            </div>
+        </div> <!--부서 관리 end-->
+
+        <div id="emp-reg"><!--사원 등록-->
+            <div id="menu-title">사원 등록</div>
+            <div id="emp-reg-top">
+                <div class="group">
+                    이름
+                    <input id="name" type="text" />
+                </div>
+                <div class="group">
+                    직급
+                    <input id="position" type="text" />
+                </div>
+                <div class="group">
+                    부서
+                    <select id="dept-drop">
+                        <option value="disabled"> 부서를 선택하세요 </option>
+                    </select>
+                </div>
+                <div class="group">
+                    사진
+                    <input id="image" type="file" />
+                </div>
+            </div>
+            <div id="empAddArea">
+                <button class="empAddBtn" onclick="empAdd()">등록</button>
+            </div>
+            <div id="emp-list">
+                <div id="menu-title">사원 전체 목록</div>
+                <table><!--사원 관리 테이블-->
+                    <thead>
+                    <tr>
+                        <th>사진</th>
+                        <th>이름</th>
+                        <th>부서</th>
+                        <th>직급</th>
+                        <th>관리</th>
+                    </tr>
+                    </thead>
+                    <tbody id="empbody">
+                    <tr>
+                        <td><img id="empimg" src="https://placehold.co/100x100" /></td>
+                        <td>김민준</td>
+                        <td>개발팀</td>
+                        <td>신입 개발자</td>
+                        <td>
+                            <button class="updateBtn" onclick="updateEmp()">수정</button>
+                            <button class="deleteBtn" onclick="deleteEmp()">삭제</button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div><!--사원 등록 end-->
+
+        <div id="emp-vac"><!--사원 휴가-->
+            <div id="menu-title">사원 휴가 신청</div>
+            <div id="emp-vac-top">
+                <div>
+                    <div class="group1">
+                        신청 사원
+                        <select id="name-drop">
+                            <option value="disabled"> 휴가 신청 사원을 선택하세요 </option>
+                        </select>
+                    </div>
+                    <div id="vacdate">
+                        <div class="group2">
+                            휴가 시작일 <input id="vacStart" type="date" />
+                        </div>
+                        <div class="group2">
+                            휴가 종료일 <input id="vacEnd" type="date" />
+                        </div>
+                    </div>
+                    <div class="group1">
+                        휴가 사유 <input id="vacReason" type="text" placeholder="예: 여름 휴가" />
+                    </div>
+                </div>
+            </div>
+            <div id="vacAddArea">
+                <button id="vacSignUpBtn" onclick="vacSignUp()">신청</button>
+            </div>
+            <div>
+                <div id="menu-title">휴가 신청 전체 목록</div>
+                <div id="vacbody">
+                    <div id="vacbox">
+                        <div> 김민준 </div>
+                        <div id="vaclistdate">
+                            <div> 2025-08-04 </div>
+                            ~
+                            <div> 2025-08-04 </div>
+                        </div>
+                        <div id="reasontext"> 사유: 병원 진료 </div>
+                        <button id="vacCancleBtn" onclick="vacCancle()">신청취소</button>
+                    </div>
+                </div>
+            </div>
+        </div><!--사원 휴가end-->
+    </div> <!--body end-->
+</div> <!-- wrap end-->
+
+<script src="practice9.js"></script>
+</body>
+
+</html>
