@@ -59,14 +59,14 @@
                 </div>
             </div>
             <div id="empAddArea">
-                <button class="empAddBtn" onclick="empAdd()">등록</button>
+                <button class="empAddBtn" onclick="onwrite()">등록</button>
             </div>
             <div id="emp-list">
                 <div id="menu-title">사원 전체 목록</div>
                 <table><!--사원 관리 테이블-->
                     <thead>
                     <tr>
-                        <th>사진</th>
+                        <th>번호</th>
                         <th>이름</th>
                         <th>부서</th>
                         <th>직급</th>
@@ -75,13 +75,13 @@
                     </thead>
                     <tbody id="empbody">
                     <tr>
-                        <td><img id="empimg" src="https://placehold.co/100x100" /></td>
+                        <td>1</td>
                         <td>김민준</td>
                         <td>개발팀</td>
                         <td>신입 개발자</td>
                         <td>
-                            <button class="updateBtn" onclick="updateEmp()">수정</button>
-                            <button class="deleteBtn" onclick="deleteEmp()">삭제</button>
+                            <button class="updateBtn" >수정</button>
+                            <button class="deleteBtn" >삭제</button>
                         </td>
                     </tr>
                     </tbody>
