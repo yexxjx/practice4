@@ -24,6 +24,7 @@ const deptFindAll = async () => {
             </div>`;
     }
     deptContainer.innerHTML = html;
+}
 
 
 deptFindAll();
@@ -39,6 +40,7 @@ const deptCreate=async()=>{
         deptnameInput.value="";
         deptFindAll();
     } else{alert("등록 실패");}
+}
 
 
 const deptDelete=async(dno)=>{
@@ -67,7 +69,7 @@ const deptUpdate=async(dno)=>{
 
 const onfindAll = async()=>{
     try{
-        const empbody = document.querySelector("#empbody");
+        const tbody = document.querySelector(".table tbody");
         let html = "";
         const response = await axios.get("/practice4/people")
         const data = response.data
@@ -82,16 +84,16 @@ const onfindAll = async()=>{
                     </tr>`
 
         }
-         empbody.innerHTML= html;
+         tbody.innerHTML= html;
     }catch(e){console.log(e)}
 }
 onfindAll();
 
 const onwrite = async() => {
     try{
-        const pname = document.querySelector("#name").value;
-        const dept = document.querySelector("#dept-drop").value;
-        const position = document.querySelector("#position").value;
+        const pname = document.querySelector(".input1").value;
+        const dept = document.querySelector('select.select option:checked').value;
+        const position = document.querySelector(".input2").value;
         const obj = {"pname" : pname , "dept" : dept , "position" : position}
         const response = await axios.post("/practice4/people" , obj)
         const data = response.data
@@ -103,6 +105,7 @@ const onwrite = async() => {
     }catch(e){console.log(e)}
 
 }
+
 const ondelete = async(pno) => {
     try{
         const response = await axios.delete(`/practice4/people?pno=${pno}`)
