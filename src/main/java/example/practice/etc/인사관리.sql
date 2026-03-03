@@ -22,7 +22,7 @@ create table people(
     pname varchar(10) not null,
     position varchar(10) not null,
     dno int, 
-    constraint foreign key (dno) references dept(dno)
+    constraint foreign key (dno) references dept(dno) on delete cascade
 );
 
 insert into people (pname , position , dno)values('유환빈' , '선임개발자','1');
@@ -34,17 +34,17 @@ select * from people;
 
 create table vacation(
 	vno int auto_increment,
-    constraint primary key(vno),
+    constraint primary key(vno), 
     reason varchar(10) not null,
     sdate varchar(30) not null,
     edate varchar(30) not null,
     pno int,
-    constraint foreign key(pno) references people(pno)
+    constraint foreign key(pno) references people(pno) on delete cascade
 );
 
 insert into vacation (reason ,sdate , edate , pno)values('병원진료', '2026-12-13' , '2026-12-14' , '1');
-insert into vacation (reason ,sdate , edate , pno)values('여름휴가', '2026-11-13' , '2026-11-14' , '1');
-insert into vacation (reason ,sdate , edate , pno)values('겨울휴가', '2026-10-13' , '2026-10-14' , '1');
-insert into vacation (reason ,sdate , edate , pno)values('가을휴가', '2026-09-13' , '2026-09-14' , '1');
-insert into vacation (reason ,sdate , edate , pno)values('봄휴가', '2026-03-13' , '2026-03-14' , '1');
+insert into vacation (reason ,sdate , edate , pno)values('여름휴가', '2026-11-13' , '2026-11-14' , '2');
+insert into vacation (reason ,sdate , edate , pno)values('겨울휴가', '2026-10-13' , '2026-10-14' , '3');
+insert into vacation (reason ,sdate , edate , pno)values('가을휴가', '2026-09-13' , '2026-09-14' , '4');
+insert into vacation (reason ,sdate , edate , pno)values('봄휴가', '2026-03-13' , '2026-03-14' , '5');
 select * from vacation;
