@@ -34,7 +34,7 @@ select * from people;
 
 create table vacation(
 	vno int auto_increment,
-    constraint primary key(vno), 
+    constraint primary key(vno),
     reason varchar(10) not null,
     sdate varchar(30) not null,
     edate varchar(30) not null,
