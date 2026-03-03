@@ -43,8 +43,6 @@ const deptFindAll = async () => {
     }
     deptContainer.innerHTML = html;
 }
-
-
 deptFindAll();
 
 const deptCreate=async()=>{
@@ -172,3 +170,48 @@ const onupdate = async(pno) => {
 
     }catch(e){console.log(e)}
 }
+
+const vacFindAll=async()=>{
+    const vacContainer=document.queryselctor(".form");
+    let html= "";
+    const response=await axios.get("/practice4/vac");
+    const data=response.data
+    for(let index=0; index<=data.length-1;index++){
+        const vac=data[index];
+        html+=`<tr>
+                    <td>${vac.pname}</td>
+                    <td>${vac.sdate}</td>
+                    <td>${vac.edate}</td>
+                    <td>${vac.reason}</td>
+                    <td><button class="btn btn-ghost">신청취소</button></td>
+                </tr>`
+
+    }
+    vacContainer.innerHTML=html;
+}
+
+vacFindAll();
+
+const vacCreate=async()=>{
+    const pname = document.querySelector(".input1").value;
+    const sdate = document.querySelector(".label1").value;
+    const edate = document.querySelector(".label2").value;
+    const reason = document.querySelector("label3").value;
+    const obj={"pname":pname, "sdate":sdate, "edate":edate, "reason":reason}
+    const response=await axios.write("/practice4/vac", obj)
+    const data=response.data;
+    if(data==true){
+        alert("등록 성공");
+        vacFindAll();
+    }else{alert("수정 실패")}
+}
+
+const vacDelete=async(vno)=>{
+    const response=await axios.delete(`/practice4/vac?vno=${vno}`);
+    const data=response.data;
+    if(data==true){
+        alert("삭제 성공");
+        deptFindAll();
+    } else{alert("삭제 실패");}
+}
+
