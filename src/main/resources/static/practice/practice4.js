@@ -37,6 +37,7 @@ const onwrite = async() => {
 
 }
 
+
 const ondelete = async(pno) => {
     try{
         const response = await axios.delete(`/practice4/people?pno=${pno}`)
@@ -64,3 +65,4 @@ const onupdate = async(pno) => {
     }catch(e){console.log(e)}
 }
 
+// =====================================유환빈========================================
