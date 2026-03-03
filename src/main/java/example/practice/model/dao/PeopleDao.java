@@ -30,10 +30,11 @@ public class PeopleDao {
 
     public boolean write(PeopleDto peopleDto){
         try{
-        String sql = "insert into people(pname,position)values(?,?)";
+        String sql = "insert into people(pname,position,dno)values(?,?,?)";
         PreparedStatement ps = conn.prepareStatement(sql);
         ps.setString(1, peopleDto.getPname());
         ps.setString(2, peopleDto.getPosition());
+        ps.setInt(3, peopleDto.getDno());
         int count = ps.executeUpdate();
         if(count == 1){return true;}
         }catch (Exception e){System.out.println(e);}
@@ -43,13 +44,13 @@ public class PeopleDao {
     public List<PeopleDto> findAll(){
         List<PeopleDto> list = new ArrayList<>();
         try{
-            String sql = "select * from people";
+            String sql = "SELECT * FROM practice4.people inner join dept on people.dno=dept.dno;";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.executeQuery();
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 PeopleDto peopleDto = new PeopleDto(rs.getInt("pno") , rs.getString("pname"),
-                        rs.getString("position"), rs.getInt("dno"));
+                        rs.getString("position"), rs.getInt("dno") , rs.getString("deptname"));
 
                         list.add(peopleDto);
             }

@@ -1,5 +1,23 @@
 console.log("practice4.js open");
 
+
+const deptFindAll2 = async () => {
+    const deptContainer = document.querySelector(".select2");
+
+    let html = `<option>부서를 선택하세요</option>`;
+
+    const response = await axios.get("/practice4/dept");
+    const data = response.data;
+
+    for(let index=0; index<data.length; index++){
+        const dept = data[index];
+        html += `<option value=${dept.dno}>${dept.deptname}</option>`;
+    }
+    deptContainer.innerHTML = html;
+}
+
+deptFindAll2();
+
 const deptFindAll = async () => {
     const deptContainer = document.querySelector(".mini-table");
 
@@ -79,6 +97,7 @@ const onfindAll = async()=>{
                         <td>${people.pno}</td>
                         <td>${people.pname}</td>
                         <td>${people.position}</td>
+                        <td>${people.deptname}</td>
                         <td><button onclick="ondelete(${people.pno})">삭제</button></td>
                         <td><button onclick="onupdate(${people.pno})">수정</button></td>
                     </tr>`
@@ -89,12 +108,33 @@ const onfindAll = async()=>{
 }
 onfindAll();
 
+const onfindAll2 = async()=>{
+    try{
+
+        const tbody = document.querySelector(".select3");
+        let html = `<option>휴가 신청 사원을 선택하세요</option>`;
+        const response = await axios.get("/practice4/people")
+        const data = response.data
+        for(let index = 0 ; index<=data.length-1 ;index++){
+            const people = data[index];
+            html += `<tr>
+                        <option>${people.pno}
+                        ${people.pname}</option>;
+                    </tr>`
+
+        }
+         tbody.innerHTML= html;
+    }catch(e){console.log(e)}
+}
+onfindAll2();
+
 const onwrite = async() => {
     try{
         const pname = document.querySelector(".input1").value;
-        const dept = document.querySelector('select.select option:checked').value;
+        const dept = document.querySelector(".select2").value;
         const position = document.querySelector(".input2").value;
-        const obj = {"pname" : pname , "dept" : dept , "position" : position}
+        const obj = {"pname" : pname , "dno" : dept , "position" : position}
+        console.log(obj)
         const response = await axios.post("/practice4/people" , obj)
         const data = response.data
         if(data == true){

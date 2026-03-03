@@ -12,4 +12,5 @@ public class PeopleDto {
     private String pname;
     private String position;
     private Integer dno;
+    private String deptname;
 }
