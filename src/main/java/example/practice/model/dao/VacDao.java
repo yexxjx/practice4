@@ -29,11 +29,12 @@ public class VacDao {
 
     public boolean write(VacDto vacDto){
         try{
-            String sql = "insert into vaction(reason , sdate , edate)values(?,?,?)";
+            String sql = "insert into vacation(reason , sdate , edate , pno)values(?,?,?,?)";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setString(1, vacDto.getReason());
             ps.setString(2, vacDto.getSdate());
             ps.setString(3 , vacDto.getEdate());
+            ps.setInt(4, vacDto.getVno());
             int count = ps.executeUpdate();
             if(count == 1){return true;}
         }catch (Exception e){System.out.println(e);}
@@ -43,13 +44,13 @@ public class VacDao {
     public List<VacDto> findAll(){
         List<VacDto> list = new ArrayList<>();
         try{
-            String sql = "select * from vacation";
+            String sql = "SELECT * FROM practice4.vacation inner join people on vacation.pno=people.pno;";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.executeQuery();
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 VacDto vacDto = new VacDto(rs.getInt("vno") , rs.getString("reason"),
-                        rs.getString("sdate"), rs.getString("edate"));
+                        rs.getString("sdate"), rs.getString("edate") , rs.getInt("pno") , rs.getString("pname"));
 
                 list.add(vacDto);
             }
@@ -60,7 +61,7 @@ public class VacDao {
 
     public boolean delete(int vno){
         try{
-            String sql = "delete from people where vno=?";
+            String sql = "delete from vacation where vno=?";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.setInt(1, vno);
             int count = ps.executeUpdate();

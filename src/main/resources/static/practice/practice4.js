@@ -116,8 +116,7 @@ const onfindAll2 = async()=>{
         for(let index = 0 ; index<=data.length-1 ;index++){
             const people = data[index];
             html += `<tr>
-                        <option>${people.pno}
-                        ${people.pname}</option>;
+                        <option value=${people.pno}>${people.pname}</option>;
                     </tr>`
 
         }
@@ -172,18 +171,19 @@ const onupdate = async(pno) => {
 }
 
 const vacFindAll=async()=>{
-    const vacContainer=document.queryselctor(".form");
+    const vacContainer=document.querySelector(".vacation-list");
     let html= "";
-    const response=await axios.get("/practice4/vac");
+    const response=await axios.get("/practice4/vacation");
     const data=response.data
     for(let index=0; index<=data.length-1;index++){
         const vac=data[index];
         html+=`<tr>
+                    <td>${vac.vno}</td>
                     <td>${vac.pname}</td>
                     <td>${vac.sdate}</td>
                     <td>${vac.edate}</td>
                     <td>${vac.reason}</td>
-                    <td><button class="btn btn-ghost">신청취소</button></td>
+                    <td><button class="btn btn-ghost" onclick="vacDelete(${vac.vno})">신청취소</button></td>
                 </tr>`
 
     }
@@ -193,12 +193,12 @@ const vacFindAll=async()=>{
 vacFindAll();
 
 const vacCreate=async()=>{
-    const pname = document.querySelector(".input1").value;
-    const sdate = document.querySelector(".label1").value;
-    const edate = document.querySelector(".label2").value;
-    const reason = document.querySelector("label3").value;
-    const obj={"pname":pname, "sdate":sdate, "edate":edate, "reason":reason}
-    const response=await axios.write("/practice4/vac", obj)
+    const pname = document.querySelector(".select3").value
+    const sdate = document.querySelector(".input3").value;
+    const edate = document.querySelector(".input4").value;
+    const reason = document.querySelector(".input5").value;
+    const obj={"reason":reason, "sdate" : sdate, "edate": edate, "vno" : pname , }
+    const response=await axios.post("/practice4/vacation", obj)
     const data=response.data;
     if(data==true){
         alert("등록 성공");
@@ -207,11 +207,11 @@ const vacCreate=async()=>{
 }
 
 const vacDelete=async(vno)=>{
-    const response=await axios.delete(`/practice4/vac?vno=${vno}`);
+    const response=await axios.delete(`/practice4/vacation?vno=${vno}`);
     const data=response.data;
     if(data==true){
         alert("삭제 성공");
-        deptFindAll();
+        vacFindAll();
     } else{alert("삭제 실패");}
 }
 

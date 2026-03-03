@@ -21,7 +21,7 @@ public class PeopleController {
     }
 
     @GetMapping
-    public List<PeopleDto> fintAll(){
+    public List<PeopleDto> findAll(){
         List<PeopleDto> result = peopleDao.findAll();
         return result;
     }

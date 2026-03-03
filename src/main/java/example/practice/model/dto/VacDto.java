@@ -13,4 +13,6 @@ public class VacDto {
     private String reason;
     private String sdate;
     private String edate;
+    private Integer pno;
+    private String pname;
 }

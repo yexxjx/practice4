@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/prctice4/vacation")
+@RequestMapping("/practice4/vacation")
 public class VacController {
 
     @Autowired
@@ -23,7 +23,7 @@ public class VacController {
     }
 
     @GetMapping
-    public List<VacDto> fintAll(){
+    public List<VacDto> findAll(){
         List<VacDto> result = vacDao.findAll();
         return result;
     }
